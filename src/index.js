@@ -10,7 +10,7 @@ function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
-function App() {
+function MyApp() {
 
   async function callFetch(url) {
     await fetch(url
@@ -59,6 +59,6 @@ function App() {
 }
 
 ReactDOM.render(
-  <App />,
+  <MyApp />,
   document.getElementById('root')
 );
