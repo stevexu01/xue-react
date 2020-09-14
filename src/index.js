@@ -13,24 +13,30 @@ function Welcome(props) {
 function MyApp() {
 
   async function callFetch(url) {
-    await fetch(url
-      , {
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      }
-      ).then(resp => resp.json()).then(data => console.log(data))
-    .catch(err => console.error(err))
+    const resp = await fetch(url
+      // , {
+      //     mode: 'cors',
+      //     headers: {
+      //       'Access-Control-Allow-Origin': '*'
+      //     }
+      //   }
+      );
+
+      const res = await resp.json();
+      console.log("In async function: ", res);
+
+      return res;
   }
   
-  function getClaims() {
+  async function getClaims() {
     console.log("Axios call to backend url: ", urlRef.current.value)
-    fetch(urlRef.current.value).then(resp => resp.json()).then(
-        data => console.log(data)
-      );
+    // fetch(urlRef.current.value).then(resp => resp.json()).then(
+    //     data => console.log(data)
+    //   );
   
-    // callFetch(urlRef);
+    const data = await callFetch(urlRef.current.value);
+    console.log("In async calling function: ", data); // data will be a promise if the function is not an async functionß
+
   }
   
   function getClaimsCors(url) {
